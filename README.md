@@ -113,6 +113,6 @@ create - POST
 http://localhost:8080/api/publishingHouses?name={name}
 
 delete POST
-http://localhost:8080/api/publishingHouses/24?_method=DELETE
+http://localhost:8080/api/publishingHouses/{id}?_method=DELETE
 
 
