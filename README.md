@@ -63,3 +63,56 @@ npm install
 Down docker - container
 docker-compose down
 
+
+
+
+
+get books list with relations - GET
+http://localhost:8080/api/
+
+
+*********************************************
+authors
+*******************************************
+all authors - GET
+http://localhost:8080/api/authors
+
+get authors info with - him books  - GET
+http://localhost:8080/api/authors/{id}
+
+create author POST
+http://localhost:8080/api/authors?name={name}
+
+update author - name POST
+example - http://localhost:8080/api/authors/{id}?_method=PUT&name={name}
+
+delete author - POST
+http://localhost:8080/api/authors/{id}?_method=DELETE
+
+
+*********************************************
+books
+*********************************************
+get list books - GET
+http://localhost:8080/api/books
+
+get book by id - from details (publishing house , authors) - GET
+http://localhost:8080/api/books/{id}
+
+*********************************************
+publishing
+*********************************************
+get publishing houses list (id , name) - GET
+http://localhost:8080/api/publishingHouses
+
+
+get publishing houses -info (name , book list -> this publishing) = GET
+http://localhost:8080/api/publishingHouses/{id}
+
+create - POST
+http://localhost:8080/api/publishingHouses?name={name}
+
+delete POST
+http://localhost:8080/api/publishingHouses/24?_method=DELETE
+
+
