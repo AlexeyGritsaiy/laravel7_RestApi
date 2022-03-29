@@ -10,18 +10,9 @@ class Author extends Model
 {
     protected $fillable = ['name'];
 
-    public function book()
+    public function book():BelongsToMany
     {
         return $this->belongsToMany(Book::class,'author_book','author_id','book_id');
     }
 
-//    public function books(): BelongsToMany
-//    {
-//        return $this->belongsToMany(Author::class,'author_book','book_id','author_id');
-//    }
-//
-//    public function bookList():HasMany
-//    {
-//        return $this->hasMany(Book::class,'id','book_id');
-//    }
 }
