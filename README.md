@@ -7,55 +7,112 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## About Laravel api
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1.open console in dir project end run command in console
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+docker-compose up --build -d
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+2.copy config connect to database - env file
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=33061
+DB_DATABASE=app
+DB_USERNAME=app
+DB_PASSWORD=secret
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+WARNING: please check docker container next command in console:
+docker ps
 
-## Laravel Sponsors
+if isset running containers - ALL OK!
+else - docker - not run
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+3. run in command line in project:
+docker-compose exec php-cli bash
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. RUN NEXT COMMAND IN docker CONTAINER:
+composer install
+5.
+composer dump-autoload
+6.
+php artisan migrate:refresh --seed
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+open http://localhost:8080/api/ - link in browser
 
-## Security Vulnerabilities
+WARNING: permissions
+if isset problem with permissions in project = run next command in console in project:
+sudo chmod 744 -R ./*
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+WARNING: npm
+if need install npm need enter in docker container - node ;
+docker-compose exec node sh
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+in container run commands
+npm install
+
+
+
+
+Down docker - container
+docker-compose down
+
+
+
+
+
+get books list with relations - GET
+http://localhost:8080/api/
+
+
+*********************************************
+authors
+*******************************************
+all authors - GET
+http://localhost:8080/api/authors
+
+get authors info with - him books  - GET
+http://localhost:8080/api/authors/{id}
+
+create author POST
+http://localhost:8080/api/authors?name={name}
+
+update author - name POST
+example - http://localhost:8080/api/authors/{id}?_method=PUT&name={name}
+
+delete author - POST
+http://localhost:8080/api/authors/{id}?_method=DELETE
+
+
+*********************************************
+books
+*********************************************
+get list books - GET
+http://localhost:8080/api/books
+
+get book by id - from details (publishing house , authors) - GET
+http://localhost:8080/api/books/{id}
+
+*********************************************
+publishing
+*********************************************
+get publishing houses list (id , name) - GET
+http://localhost:8080/api/publishingHouses
+
+
+get publishing houses -info (name , book list -> this publishing) = GET
+http://localhost:8080/api/publishingHouses/{id}
+
+create - POST
+http://localhost:8080/api/publishingHouses?name={name}
+
+delete POST
+http://localhost:8080/api/publishingHouses/{id}?_method=DELETE
+
+
